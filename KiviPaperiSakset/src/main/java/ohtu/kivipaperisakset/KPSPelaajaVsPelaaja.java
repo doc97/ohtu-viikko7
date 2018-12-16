@@ -2,10 +2,11 @@ package ohtu.kivipaperisakset;
 
 import java.util.Scanner;
 
-public class KPSPelaajaVsPelaaja {
+public class KPSPelaajaVsPelaaja implements Pelimuoto {
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    @Override
     public void pelaa() {
         Tuomari tuomari = new Tuomari();
 
