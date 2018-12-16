@@ -2,7 +2,7 @@ package ohtu.kivipaperisakset;
 
 public class KPSTekoaly extends KPS {
 
-    private TekoalyHelppo tekoaly;
+    private Tekoaly tekoaly;
 
     @Override
     protected void setup() {
