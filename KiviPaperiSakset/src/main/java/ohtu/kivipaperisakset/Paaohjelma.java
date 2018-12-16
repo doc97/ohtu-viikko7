@@ -7,22 +7,30 @@ public class Paaohjelma {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-
-        while (true) {
-            System.out.println("\nValitse pelataanko"
-                    + "\n (a) ihmistä vastaan "
-                    + "\n (b) tekoälyä vastaan"
-                    + "\n (c) parannettua tekoälyä vastaan"
-                    + "\nmuilla valinnoilla lopetataan");
-
-            String vastaus = scanner.nextLine();
-            Pelimuoto peli = getPelimuoto(vastaus);
-            if (peli == null)
-                break;
-
-            System.out.println("peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s");
-            peli.pelaa();
+        boolean isRunning = true;
+        while (isRunning) {
+            printMenu();
+            isRunning = handleResponse();
         }
+    }
+
+    private static void printMenu() {
+        System.out.println("\nValitse pelataanko"
+                + "\n (a) ihmistä vastaan "
+                + "\n (b) tekoälyä vastaan"
+                + "\n (c) parannettua tekoälyä vastaan"
+                + "\nmuilla valinnoilla lopetataan");
+    }
+
+    private static boolean handleResponse() {
+        String vastaus = Paaohjelma.scanner.nextLine();
+        Pelimuoto peli = getPelimuoto(vastaus);
+        if (peli == null)
+            return false;
+
+        System.out.println("peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s");
+        peli.pelaa();
+        return true;
     }
 
     private static Pelimuoto getPelimuoto(String type) {
