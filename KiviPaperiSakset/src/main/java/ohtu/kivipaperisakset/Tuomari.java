@@ -25,29 +25,17 @@ public class Tuomari {
 
     // sisäinen metodi, jolla tarkastetaan tuliko tasapeli
     private boolean tasapeli(String eka, String toka) {
-        if (eka.equals(toka)) {
-            return true;
-        }
-
-        return false;
+        return eka.equals(toka);
     }
 
     // sisäinen metodi joka tarkastaa voittaako eka pelaaja tokan
     private boolean ekaVoittaa(String eka, String toka) {
-        if ("k".equals(eka) && "s".equals(toka)) {
-            return true;
-        } else if ("s".equals(eka) && "p".equals(toka)) {
-            return true;
-        } else if ("p".equals(eka) && "k".equals(toka)) {
-            return true;
-        }
-
-        return false;
+        return ("k".equals(eka) && "s".equals(toka)) ||
+               ("s".equals(eka) && "p".equals(toka)) ||
+               ("p".equals(eka) && "k".equals(toka));
     }
 
     public String toString() {
-        String s = "Pelitilanne: " + ekanPisteet + " - " + tokanPisteet + "\n"
-                + "Tasapelit: " + tasapelit;
-        return s;
+        return "Pelitilanne: " + ekanPisteet + " - " + tokanPisteet + "\n" + "Tasapelit: " + tasapelit;
     }
 }
