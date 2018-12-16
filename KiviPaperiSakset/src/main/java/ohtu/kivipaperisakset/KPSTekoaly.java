@@ -6,6 +6,7 @@ public class KPSTekoaly extends KPS {
 
     @Override
     protected void setup() {
+        super.setup();
         tekoaly = new Tekoaly();
     }
 
