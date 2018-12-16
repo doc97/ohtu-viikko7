@@ -16,23 +16,23 @@ public class Paaohjelma {
                     + "\nmuilla valinnoilla lopetataan");
 
             String vastaus = scanner.nextLine();
-            if (vastaus.endsWith("a")) {
-                System.out.println("peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s");
-                KPSPelaajaVsPelaaja kaksinpeli = new KPSPelaajaVsPelaaja();
-                kaksinpeli.pelaa();
-            } else if (vastaus.endsWith("b")) {
-                System.out.println("peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s");
-                KPSTekoaly yksinpeli = new KPSTekoaly();
-                yksinpeli.pelaa();
-            } else if (vastaus.endsWith("c")) {
-                System.out.println("peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s");
-                KPSParempiTekoaly pahaYksinpeli = new KPSParempiTekoaly();
-                pahaYksinpeli.pelaa();
-            } else {
+            Pelimuoto peli = getPelimuoto(vastaus);
+            if (peli == null)
                 break;
-            }
 
+            System.out.println("peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s");
+            peli.pelaa();
         }
+    }
 
+    private static Pelimuoto getPelimuoto(String type) {
+        if (type.endsWith("a"))
+            return new KPSPelaajaVsPelaaja();
+        else if (type.endsWith("b"))
+            return new KPSTekoaly();
+        else if (type.endsWith("c"))
+            return new KPSParempiTekoaly();
+        else
+            return null;
     }
 }
