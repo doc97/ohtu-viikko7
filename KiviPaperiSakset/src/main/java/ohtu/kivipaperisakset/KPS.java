@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * Created by Daniel Riissanen on 16.12.2018.
  */
-public abstract class KPS {
+public abstract class KPS implements Peli {
 
     protected static final Scanner scanner = new Scanner(System.in);
 

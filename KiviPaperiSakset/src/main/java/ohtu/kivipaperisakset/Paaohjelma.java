@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Paaohjelma {
 
     private static final Scanner scanner = new Scanner(System.in);
-    private static Map<Character, KPS> modes;
+    private static Map<Character, Peli> modes;
 
     public static void main(String[] args) {
         initializeGameModes();
@@ -36,7 +36,7 @@ public class Paaohjelma {
 
     private static boolean handleResponse() {
         String vastaus = Paaohjelma.scanner.nextLine();
-        KPS peli = getPelimuoto(vastaus);
+        Peli peli = getPelimuoto(vastaus);
         if (peli == null)
             return false;
 
@@ -45,7 +45,7 @@ public class Paaohjelma {
         return true;
     }
 
-    private static KPS getPelimuoto(String response) {
+    private static Peli getPelimuoto(String response) {
         if (response.isEmpty())
             return null;
         return modes.get(response.toLowerCase().charAt(response.length() - 1));
