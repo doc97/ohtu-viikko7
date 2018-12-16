@@ -1,17 +1,29 @@
 package ohtu.kivipaperisakset;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Paaohjelma {
 
     private static final Scanner scanner = new Scanner(System.in);
+    private static Map<Character, Pelimuoto> modes;
 
     public static void main(String[] args) {
+        initializeGameModes();
+
         boolean isRunning = true;
         while (isRunning) {
             printMenu();
             isRunning = handleResponse();
         }
+    }
+
+    private static void initializeGameModes() {
+        modes = new HashMap<>();
+        modes.put('a', new KPSPelaajaVsPelaaja());
+        modes.put('b', new KPSTekoaly());
+        modes.put('c', new KPSParempiTekoaly());
     }
 
     private static void printMenu() {
@@ -33,14 +45,9 @@ public class Paaohjelma {
         return true;
     }
 
-    private static Pelimuoto getPelimuoto(String type) {
-        if (type.endsWith("a"))
-            return new KPSPelaajaVsPelaaja();
-        else if (type.endsWith("b"))
-            return new KPSTekoaly();
-        else if (type.endsWith("c"))
-            return new KPSParempiTekoaly();
-        else
+    private static Pelimuoto getPelimuoto(String response) {
+        if (response.isEmpty())
             return null;
+        return modes.get(response.toLowerCase().charAt(response.length() - 1));
     }
 }
