@@ -3,23 +3,18 @@ package ohtu.kivipaperisakset;
 public class TekoalyHelppo implements Tekoaly {
 
     private int siirto;
+    private String[] siirrot;
 
     public TekoalyHelppo() {
         siirto = 0;
+        siirrot = new String[] { "k", "p", "s" };
     }
 
     @Override
     public String annaSiirto() {
         siirto++;
         siirto = siirto % 3;
-
-        if (siirto == 0) {
-            return "k";
-        } else if (siirto == 1) {
-            return "p";
-        } else {
-            return "s";
-        }
+        return siirrot[siirto];
     }
 
     @Override
