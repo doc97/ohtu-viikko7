@@ -4,6 +4,7 @@ package ohtu.kivipaperisakset;
 // "Muistava tekoäly"
 
 public class TekoalyParannettu implements Tekoaly {
+
     private String[] muisti;
     private int vapaaMuistiIndeksi;
 
@@ -42,9 +43,9 @@ public class TekoalyParannettu implements Tekoaly {
             if (viimeisinSiirto.equals(muisti[i])) {
                 String seuraava = muisti[i+1];
 
-                if("k".equals(seuraava)) {
+                if ("k".equals(seuraava)) {
                     k++;
-                } else if("p".equals(seuraava)) {
+                } else if ("p".equals(seuraava)) {
                     p++;
                 } else {
                     s++;
@@ -57,12 +58,14 @@ public class TekoalyParannettu implements Tekoaly {
         // - jos kiviä eniten, annetaan aina paperi
         // - jos papereita eniten, annetaan aina sakset
         // muulloin annetaan aina kivi
-        if(k > p && k > s) {
-          return "p";
-        } else if (p > k && p > s) {
-          return "s";
+
+        int max = Math.max(k, Math.max(p, s));
+        if (max == k) {
+            return "p";
+        } else if (max == p) {
+            return "s";
         } else {
-          return "k";
+            return "k";
         }
         // Tehokkaampiakin tapoja löytyy, mutta niistä lisää
         // Johdatus Tekoälyyn kurssilla!
