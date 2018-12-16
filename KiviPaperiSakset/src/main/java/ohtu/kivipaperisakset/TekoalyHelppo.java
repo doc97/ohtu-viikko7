@@ -1,10 +1,10 @@
 package ohtu.kivipaperisakset;
 
-public class Tekoaly {
+public class TekoalyHelppo {
 
     int siirto;
 
-    public Tekoaly() {
+    public TekoalyHelppo() {
         siirto = 0;
     }
 
