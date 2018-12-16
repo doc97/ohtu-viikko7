@@ -2,7 +2,7 @@ package ohtu.kivipaperisakset;
 
 import java.util.Scanner;
 
-public class KPSPelaajaVsPelaaja implements Pelimuoto {
+public class KPSPelaajaVsPelaaja extends KPS {
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -10,26 +10,33 @@ public class KPSPelaajaVsPelaaja implements Pelimuoto {
     public void pelaa() {
         Tuomari tuomari = new Tuomari();
 
-        System.out.print("Ensimmäisen pelaajan siirto: ");
-        String ekanSiirto = scanner.nextLine();
-        System.out.print("Toisen pelaajan siirto: ");
-        String tokanSiirto = scanner.nextLine();
+        String ekanSiirto = ekanSiirto();
+        String tokanSiirto = tokanSiirto();
 
         while (onkoOkSiirto(ekanSiirto) && onkoOkSiirto(tokanSiirto)) {
             tuomari.kirjaaSiirto(ekanSiirto, tokanSiirto);
             System.out.println(tuomari);
             System.out.println();
 
-            System.out.print("Ensimmäisen pelaajan siirto: ");
-            ekanSiirto = scanner.nextLine();
-            
-            System.out.print("Toisen pelaajan siirto: ");
-            tokanSiirto = scanner.nextLine();
+            ekanSiirto = ekanSiirto();
+            tokanSiirto = tokanSiirto();
         }
 
         System.out.println();
         System.out.println("Kiitos!");
         System.out.println(tuomari);
+    }
+
+    @Override
+    protected String ekanSiirto() {
+        System.out.print("Ensimmäisen pelaajan siirto: ");
+        return scanner.nextLine();
+    }
+
+    @Override
+    protected String tokanSiirto() {
+        System.out.print("Toisen pelaajan siirto: ");
+        return scanner.nextLine();
     }
 
     private static boolean onkoOkSiirto(String siirto) {

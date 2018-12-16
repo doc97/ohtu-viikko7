@@ -2,45 +2,47 @@ package ohtu.kivipaperisakset;
 
 import java.util.Scanner;
 
-import java.util.Scanner;
-
 // Kivi-Paperi-Sakset, jossa voidaan valita pelataanko vastustajaa
 // vastaan vai ei
-public class KPSParempiTekoaly implements Pelimuoto {
+public class KPSParempiTekoaly extends KPS {
 
     private static final Scanner scanner = new Scanner(System.in);
+    private TekoalyParannettu tekoaly;
 
     @Override
     public void pelaa() {
         Tuomari tuomari = new Tuomari();
-        TekoalyParannettu tekoaly = new TekoalyParannettu(20);
+        tekoaly = new TekoalyParannettu(20);
 
-        System.out.print("Ensimmäisen pelaajan siirto: ");
-        String ekanSiirto = scanner.nextLine();
-        String tokanSiirto;
-
-
-        tokanSiirto = tekoaly.annaSiirto();
-        System.out.println("Tietokone valitsi: " + tokanSiirto);
-
+        String ekanSiirto = ekanSiirto();
+        String tokanSiirto = tokanSiirto();
 
         while (onkoOkSiirto(ekanSiirto) && onkoOkSiirto(tokanSiirto)) {
             tuomari.kirjaaSiirto(ekanSiirto, tokanSiirto);
             System.out.println(tuomari);
             System.out.println();
 
-            System.out.print("Ensimmäisen pelaajan siirto: ");
-            ekanSiirto = scanner.nextLine();
-
-            tokanSiirto = tekoaly.annaSiirto();
-            System.out.println("Tietokone valitsi: " + tokanSiirto);
+            ekanSiirto = ekanSiirto();
+            tokanSiirto = tokanSiirto();
             tekoaly.asetaSiirto(ekanSiirto);
-
         }
 
         System.out.println();
         System.out.println("Kiitos!");
         System.out.println(tuomari);
+    }
+
+    @Override
+    protected String ekanSiirto() {
+        System.out.print("Ensimmäisen pelaajan siirto: ");
+        return scanner.nextLine();
+    }
+
+    @Override
+    protected String tokanSiirto() {
+        String siirto = tekoaly.annaSiirto();
+        System.out.println("Tietokone valitsi: " + siirto);
+        return siirto;
     }
 
     private static boolean onkoOkSiirto(String siirto) {
